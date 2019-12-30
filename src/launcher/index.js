@@ -33,6 +33,29 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+
+// If you enabled Analytics in your project, add the Firebase SDK for Analytics
+import "firebase/analytics";
+const firebaseConfig = {
+  apiKey: "AIzaSyD149Gmu0wDwm1AjuO_OLR3RRDCerg0sBE",
+  authDomain: "nrf-analytics.firebaseapp.com",
+  databaseURL: "https://nrf-analytics.firebaseio.com",
+  projectId: "nrf-analytics",
+  storageBucket: "nrf-analytics.appspot.com",
+  messagingSenderId: "1095801527541",
+  appId: "1:1095801527541:web:8058ce16ea8a3f0810f9bc",
+  measurementId: "G-R6Z6GCE963"
+};
+firebase.initializeApp(firebaseConfig);
+const defaultAnalytics = firebase.analytics();
+console.log(defaultAnalytics);
+defaultAnalytics.logEvent('select_content', {
+  content_type: 'image',
+  content_id: 'P12453',
+  items: [{ name: 'Kittens' }]
+});
 
 import 'core-js/es7';
 import 'regenerator-runtime/runtime';
