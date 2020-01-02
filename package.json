@@ -128,6 +128,7 @@
         "mustache": "3.0.1",
         "nrf-device-setup": "0.6.3",
         "pc-ble-driver-js": "2.6.2",
+        "react-ga": "^2.7.0",
         "react-markdown": "4.1.0",
         "roboto-fontface": "0.10.0",
         "shasum": "1.0.2",

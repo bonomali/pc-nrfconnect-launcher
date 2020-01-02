@@ -34,46 +34,83 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from "firebase/app";
-
+// import * as firebase from "firebase/app";
+//
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
-import "firebase/analytics";
-const firebaseConfig = {
-  apiKey: "AIzaSyD149Gmu0wDwm1AjuO_OLR3RRDCerg0sBE",
-  authDomain: "nrf-analytics.firebaseapp.com",
-  databaseURL: "https://nrf-analytics.firebaseio.com",
-  projectId: "nrf-analytics",
-  storageBucket: "nrf-analytics.appspot.com",
-  messagingSenderId: "1095801527541",
-  appId: "1:1095801527541:web:8058ce16ea8a3f0810f9bc",
-  measurementId: "G-R6Z6GCE963"
-};
-firebase.initializeApp(firebaseConfig);
-const defaultAnalytics = firebase.analytics();
-console.log(defaultAnalytics);
-defaultAnalytics.logEvent('select_content', {
-  content_type: 'image',
-  content_id: 'P12453',
-  items: [{ name: 'Kittens' }]
-});
+// import "firebase/analytics";
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD149Gmu0wDwm1AjuO_OLR3RRDCerg0sBE",
+//   authDomain: "nrf-analytics.firebaseapp.com",
+//   databaseURL: "https://nrf-analytics.firebaseio.com",
+//   projectId: "nrf-analytics",
+//   storageBucket: "nrf-analytics.appspot.com",
+//   messagingSenderId: "1095801527541",
+//   appId: "1:1095801527541:web:8058ce16ea8a3f0810f9bc",
+//   measurementId: "G-R6Z6GCE963"
+// };
+// firebase.initializeApp(firebaseConfig);
+// const defaultAnalytics = firebase.analytics();
+// console.log(defaultAnalytics);
+// defaultAnalytics.logEvent('select_content', {
+//   content_type: 'image',
+//   content_id: 'P12453',
+//   items: [{ name: 'Kittens' }]
+// });
 
 import 'core-js/es7';
 import 'regenerator-runtime/runtime';
 
-import React from 'react';
-import { render } from 'react-dom';
+import '../../resources/css/launcher.scss';
+
 import { remote } from 'electron';
 import isDev from 'electron-is-dev';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react';
+import { render } from 'react-dom';
+import ReactGA from 'react-ga';
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import RootContainer from './containers/RootContainer';
-import rootReducer from './reducers';
 import * as AppsActions from './actions/appsActions';
 import * as AutoUpdateActions from './actions/autoUpdateActions';
 import * as ProxyActions from './actions/proxyActions';
-import '../../resources/css/launcher.scss';
+import RootContainer from './containers/RootContainer';
+import rootReducer from './reducers';
+
+ReactGA.initialize('UA-64174722-5', {
+    debug: false,
+    titleCase: false,
+    gaOptions: {
+        storage: 'none',
+        storeGac: false,
+        clientId: '123',
+    },
+});
+ReactGA.set({
+    checkProtocolTask: null,
+    screenResolution: '800x600',
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
+// ReactGA.pageview('http://chun.no');
+ReactGA.event({
+    category: 'Error',
+    action: 'libusb error',
+});
+ReactGA.event({
+    category: 'Programmer',
+    action: 'Install app',
+    label: 'Programmer',
+});
+ReactGA.event({
+    category: 'Getting started app',
+    action: 'Open app',
+    label: '',
+});
+ReactGA.event({
+    category: 'BLE',
+    action: 'Close app',
+    label: 'This is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long strinThis is a long stringggggggggggggggggggggggggggggggggThis is a long string',
+});
 
 const config = remote.require('../main/config');
 const settings = remote.require('../main/settings');
